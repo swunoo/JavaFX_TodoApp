@@ -1,3 +1,7 @@
 FE Prep	Read Chapter 3	3	2022-09-10	2022-09-15	false		
 UoPeople	Statistic coursework	3	2022-09-09	2022-09-18	false		
-Remote Work	Code in Java	2	2022-09-15	2022-09-20	false		
+Biking	Touche' la gra pour la sante	1	2022-09-10	2022-09-11	false		
+Code TodoList	Another mini project	5	2022-09-10	2022-09-11	false		
+Drink water	regularly	5	2022-09-10	2022-09-11	false		
+Read Ch3	of ITPEC FE	3	2022-09-01	2022-09-02	false		
+Drink more water	good for your health or something.	3	2022-09-01	2022-09-30	false		

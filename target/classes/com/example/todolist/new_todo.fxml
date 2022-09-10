@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.text.Font?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.Integer?>
+<DialogPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.todolist.newTodoController">
+
+    <headerText>
+        Add New Todo
+    </headerText>
+    <content>
+        <GridPane vgap="10" hgap="10">
+            <Label  text="title" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="titleInput" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+            <Label text="description" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextArea fx:id="descriptionInput" GridPane.rowIndex="1" GridPane.columnIndex="1" wrapText="true"/>
+            <Label text="priority" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <ChoiceBox fx:id="priorityInput" GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.columnSpan="3">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <Integer fx:value="1"/>
+                        <Integer fx:value="2"/>
+                        <Integer fx:value="3"/>
+                        <Integer fx:value="4"/>
+                        <Integer fx:value="5"/>
+                    </FXCollections>
+                </items>
+                <value>
+                    <Integer fx:value="3"/>
+                </value>
+            </ChoiceBox>
+            <Label text="early start" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <DatePicker fx:id="earlyStartInput" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            <Label text="late finish" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <DatePicker fx:id="lateFinishInput" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+        </GridPane>
+    </content>
+</DialogPane>
