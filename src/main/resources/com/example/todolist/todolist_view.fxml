@@ -15,11 +15,11 @@
                 <Menu text="File">
                     <MenuItem text="New" onAction="#showNewTodoDialog"/>
                     <SeparatorMenuItem/>
-                    <MenuItem text="Exit"/>
+                    <MenuItem text="Exit" onAction="#exitApp"/>
                 </Menu>
             </MenuBar>
             <ToolBar>
-                <HBox>
+                <HBox spacing="15">
                     <Button text="New" onAction="#showNewTodoDialog">
                         <tooltip>
                             <Tooltip text="Add a new todo item"/>
@@ -30,6 +30,11 @@
                             </ImageView>
                         </graphic>
                     </Button>
+                    <ToggleButton fx:id="filterItemBtn" onAction="#filterItems" text="todayItems">
+                        <tooltip>
+                            <Tooltip text="Today's items only"/>
+                        </tooltip>
+                    </ToggleButton>
                 </HBox>
             </ToolBar>
         </VBox>

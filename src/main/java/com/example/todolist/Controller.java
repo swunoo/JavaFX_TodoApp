@@ -1,7 +1,9 @@
 package com.example.todolist;
 
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -19,11 +21,13 @@ import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 public class Controller {
    
    private List<TodoItem> todoItems;
-   
+   private FilteredList<TodoItem> filteredList;
+
    @FXML
    private ListView<TodoItem> todoListView;
    @FXML
@@ -38,6 +42,8 @@ public class Controller {
    private BorderPane mainBorderPane;
    @FXML
    private ContextMenu listContextMenu;
+   @FXML
+   private ToggleButton filterItemBtn;
    
    public void initialize () throws IOException {
       
@@ -54,15 +60,14 @@ public class Controller {
             deleteItem(item);
          }
       });
+      
+      filteredList = new FilteredList<>(TodoData.getInstance().getTodoItems(), item -> true);
    
-      SortedList<TodoItem> sortedList = new SortedList<>(TodoData.getInstance().getTodoItems(), new Comparator<TodoItem>() {
-         @Override
-         public int compare(TodoItem o1, TodoItem o2) {
-            if(o1.getLateFinish().equals(o2.getLateFinish())){
-               return 0;
-            }
-            return o1.getLateFinish().isAfter(o2.getLateFinish()) ? 1 : -1;
+      SortedList<TodoItem> sortedList = new SortedList<>(filteredList, (o1, o2) -> {
+         if(o1.getLateFinish().equals(o2.getLateFinish())){
+            return 0;
          }
+         return o1.getLateFinish().isAfter(o2.getLateFinish()) ? 1 : -1;
       });
       
       todoListView.getItems().setAll(sortedList);
@@ -211,5 +216,43 @@ public class Controller {
       sb.append("Late Finish: ").append(item.getLateFinish());
 
       todoItemDetails.setText(String.valueOf(sb));
+   }
+   
+   @FXML
+   public void filterItems () {
+      
+      if(filterItemBtn.isSelected()){
+         filteredList.setPredicate(item -> item.getLateFinish().isAfter(LocalDate.now().plusDays(3)));
+         
+         // This should be automatic tho.
+         SortedList<TodoItem> sortedList = new SortedList<>(filteredList, (o1, o2) -> {
+            if(o1.getLateFinish().equals(o2.getLateFinish())){
+               return 0;
+            }
+            return o1.getLateFinish().isAfter(o2.getLateFinish()) ? 1 : -1;
+         });
+   
+         todoListView.getItems().setAll(sortedList);
+         
+      } else {
+         filteredList.setPredicate(item -> true);
+         SortedList<TodoItem> sortedList = new SortedList<>(filteredList, (o1, o2) -> {
+            if(o1.getLateFinish().equals(o2.getLateFinish())){
+               return 0;
+            }
+            return o1.getLateFinish().isAfter(o2.getLateFinish()) ? 1 : -1;
+         });
+   
+         todoListView.getItems().setAll(sortedList);
+         
+         
+      }
+      todoListView.getSelectionModel().selectFirst();
+   
+   }
+   
+   @FXML
+   public void exitApp () {
+      Platform.exit();
    }
 }
