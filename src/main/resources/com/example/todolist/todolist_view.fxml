@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.text.Font?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.todolist.Controller">
+    <top>
+        <MenuBar>
+            <Menu text="File">
+                <items>
+                    <MenuItem text="New"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Exit"/>
+                </items>
+            </Menu>
+        </MenuBar>
+    </top>
+    <left>
+        <ListView fx:id="todoListView" onMouseClicked="#onClickListView">
+
+        </ListView>
+    </left>
+
+    <center>
+        <VBox>
+            <VBox VBox.vgrow="ALWAYS" spacing="10">
+                <Label fx:id="itemTitle">
+                    <font>
+                        <Font name="Calibri bold" size="20"/>
+                    </font>
+                </Label>
+                <TextArea fx:id="todoItemDetails"/>
+            </VBox>
+            <HBox spacing="10">
+                <Label text="Early Start: "/>
+                <Label fx:id ="itemES"/>
+                <Label text="Late Finish: "/>
+                <Label fx:id ="itemLF"/>
+            </HBox>
+        </VBox>
+    </center>
+
+</BorderPane>

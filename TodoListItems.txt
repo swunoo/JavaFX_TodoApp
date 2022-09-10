@@ -1,0 +1,3 @@
+FE Prep	Read Chapter 3	3	2022-09-10	2022-09-15	false		
+UoPeople	Statistic coursework	3	2022-09-09	2022-09-18	false		
+Remote Work	Code in Java	2	2022-09-15	2022-09-20	false		
